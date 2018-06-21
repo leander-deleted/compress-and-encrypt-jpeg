@@ -26,7 +26,7 @@ public:
 	bool dctTransform();
 	void quantization(uint8_t degree = 50);
 	void show(vector<uint8_t>data={},int s=1);
-
+	void zigzagConversion();
 	int width;
 	int height;
 private:
@@ -37,7 +37,10 @@ private:
 	int count;
 
 	// data block store all 8*8 blocks
-    vector<Dim2> Imgblock,q_Imgblock;
+
+	//
+    vector<Dim2> Imgblock
+    ,q_Imgblock;
     vector<fDim2> dct_Imgblock;
 
 	uint8_t Q50[M][N] = {
@@ -50,6 +53,8 @@ private:
 	{49,64,78,87,103,121,120,101},
 	{72,92,95,98,112,100,103,99}
 	};
+
+	vector<uint8_t> z_stream;
 };
 
 #endif

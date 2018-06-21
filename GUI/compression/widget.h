@@ -1,3 +1,16 @@
+/*
+    //select file
+    QPushButton *pushButton;
+    //compress
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
+    QFrame *line;
+    QFrame *line_2;
+    //output file name
+    QLineEdit *lineEdit;
+    //degree
+    QLineEdit *lineEdit_2;
+*/
 #ifndef WIDGET_H
 #define WIDGET_H
 
@@ -30,8 +43,8 @@ private slots:
 private:
     Ui::Widget *ui;
     ClImgBMP img;
-    std::string fileName;
-    const char* fileName_t;
+    const char * f;
+    QString fileName;
 
 };
 

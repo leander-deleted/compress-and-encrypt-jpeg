@@ -27,11 +27,13 @@ SOURCES += main.cpp\
         widget.cpp\
         simpleBMP.cpp\
         rgb.cpp\
-        compression.cpp
+        compression.cpp\
+        jpeg_encoder.cpp
 
 HEADERS  += widget.h\
         simpleBMP.h\
         rgb.h\
-        compression.h
+        compression.h\
+        jpeg_encoder.h
 
 FORMS    += widget.ui

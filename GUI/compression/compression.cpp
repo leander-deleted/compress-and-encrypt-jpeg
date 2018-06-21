@@ -56,15 +56,19 @@ problem:
 
 #include "compression.h"
 
+//i_data: y_ele_data or cb_ele_data or cr
 bool Compressor::convertToBlock(vector<uint8_t> i_data, int width,int height){
 	// index from 0-24
 	this->width = width;
+
 	//qDebug()<<"width paramter"<<width;
 	//qDebug()<<"member width"<<this->width;
 	this->height = height;
 	count = (width/N)*(height/M);
+
 	//qDebug()<<"count"<<this->width;
 	//temp vector for row of 8*8 block
+
 	vector<uint8_t> vr;
 	vector<Dim1> vb;
 	int rowBlockCount = width/N;
@@ -77,9 +81,6 @@ bool Compressor::convertToBlock(vector<uint8_t> i_data, int width,int height){
 
 			//index from 0-7 column of 8*8 block
 			for(int k = 0;k<N;k++){
-				/*
-
-				*/
 				vr.push_back(i_data[(trunc(i/5)*N+j)*width+k]);
 			}
 			//qDebug()<<"vr:"<<vr;
@@ -130,8 +131,8 @@ bool Compressor::dctTransform()
 					for (l = 0; l < N; l++) {
 						//store result of formula
 						dct1 = Imgblock[c][k][l] * 
-						cos((2 * k + 1) * i * pi / (2 *M)) * 
-						cos((2 * l + 1) * j * pi / (2 * N));
+						cos((2 * k + 1) * i * pi / (16.0)) * 
+						cos((2 * l + 1) * j * pi / (16.0));
 						sum = sum + dct1;
 					}
 				}
@@ -140,7 +141,7 @@ bool Compressor::dctTransform()
 				//qDebug()<<"round( (1/sqrt(2N)) *ci * cj * sum)"<<round( (float(1/sqrt(2*N))) *ci * cj * sum);
 				vr.push_back( float(1/sqrt(2*N)) *ci * cj * sum);
 			}
-			//qDebug()<<vr;
+			qDebug()<<"dct_Imgblock vector:"<<vr;
 			vb.push_back(vr);	
 			vr.clear();
 		}
@@ -157,6 +158,7 @@ void Compressor::quantization(uint8_t degree){
 		vector <uint8_t>vr;
 		//i: index of count
 		for(int i=0;i<count;i++){
+
 			//j: 0-M-1, row index of 8*8 block
 			for(int j=0;j<M;j++){
 				
@@ -173,6 +175,35 @@ void Compressor::quantization(uint8_t degree){
 			vb.clear();
 		}
 		//show();
+}
+
+
+void Compressor::zigzagConversion(){
+	const uint8_t zigZag[M][N] =
+	{ 
+		{0, 1, 5, 6,14,15,27,28},
+		{2, 4, 7,13,16,26,29,42},
+		{3, 8,12,17,25,30,41,43},
+		{9,11,18,24,31,40,44,53},
+		{10,19,23,32,39,45,52,54},
+		{20,22,33,38,46,51,55,60},
+		{21,34,37,47,50,56,59,61},
+		{35,36,48,49,57,58,62,63} 
+	}; 
+	uint8_t tem_a[64];
+	for(int c=0;c<count;c++){
+		for(int i=0;i<M;i++){
+			for(int j=0;j<N;j++){
+				uint8_t index = zigZag[i][j];
+				tem_a[index] = uint8_t(q_Imgblock[c][i][j]);
+			}
+		}
+		for(int k=0;k<64;k++){
+			z_stream.push_back(tem_a[k]);
+		}
+	}
+	qDebug()<<z_stream;
+	qDebug()<<"size of z_stream"<<z_stream.size();
 }
 
 
