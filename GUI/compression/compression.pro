@@ -28,12 +28,14 @@ SOURCES += main.cpp\
         simpleBMP.cpp\
         rgb.cpp\
         compression.cpp\
-        jpeg_encoder.cpp
+        jpeg_encoder.cpp\
+        jpegEncryption.cpp
 
 HEADERS  += widget.h\
         simpleBMP.h\
         rgb.h\
         compression.h\
-        jpeg_encoder.h
+        jpeg_encoder.h\
+        encryption.h
 
 FORMS    += widget.ui

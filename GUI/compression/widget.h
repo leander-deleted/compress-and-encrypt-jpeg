@@ -19,8 +19,8 @@
 #include <QDebug>
 #include "simpleBMP.h"
 #include <string>
-
-
+#include "encryption.h"
+#include <QMessageBox>
 namespace Ui {
 class Widget;
 }
@@ -40,12 +40,15 @@ private slots:
     //compress
     void on_pushButton_2_clicked();
 
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
 private:
     Ui::Widget *ui;
     ClImgBMP img;
     const char * f;
     QString fileName;
-
+    Encrpytor e;
 };
 
 #endif // WIDGET_H
