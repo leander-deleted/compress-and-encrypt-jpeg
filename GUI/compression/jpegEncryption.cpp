@@ -38,7 +38,7 @@ bool Encrpytor::readJegData(const char* path){
 		}
 		while(true){
 			if(fread(&temp0,1,1,f)){
-				//cout<<temp0;
+				//image data read in
 				data.push_back(temp0);
 				//temp1 = temp0;
 			}
@@ -66,6 +66,8 @@ bool Encrpytor::encrpyt(){
     this->r.keyStream(data.size()); 
  	
  	ofstream outks; 
+
+ 	//read the key stream in 
     outks.open("C:\\Users\\fangl\\Desktop\\lecture_ppt\\cryptography\\cryptograph-ex\\keystream.dat",ios::binary);  
     for(int i=0;i<data.size();++i){  
         outks<<(r.k[i]);  
@@ -74,7 +76,8 @@ bool Encrpytor::encrpyt(){
 
     e_data.clear();
 	// index on plain text
-    for(int i=0;i<data.size();++i){  
+    for(int i=0;i<data.size();++i){ 
+    	//r.k key stream  
         e_data.push_back((unsigned char)(data[i]^r.k[i]));  
     }   
 
@@ -93,11 +96,12 @@ bool Encrpytor::decrpyt(){
 	fseek(ipk,0,SEEK_END);
 	int size = ftell(ipk);
 	fseek(ipk,0,SEEK_SET);
-
+	qDebug()<<"read key stream file";
 	fread(tem,sizeof(uint8_t),size,ipk);
 
 	for(int i=0;i<data.size();i++){
 		//GUI mode
+		//data: the encrypted image data
 		//d_data.push_back(tem[i]^data[i]);	
 		//console mode	
 		d_data.push_back(tem[i]^e_data[i]);

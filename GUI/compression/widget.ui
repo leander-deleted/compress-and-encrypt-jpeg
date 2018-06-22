@@ -141,7 +141,7 @@
     <rect>
      <x>310</x>
      <y>360</y>
-     <width>241</width>
+     <width>331</width>
      <height>41</height>
     </rect>
    </property>
@@ -151,7 +151,7 @@
     </font>
    </property>
    <property name="text">
-    <string>压缩质量：1min-100max</string>
+    <string>压缩质量：压缩比1min-100max</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_4">

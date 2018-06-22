@@ -82,7 +82,7 @@ public:
         lineEdit_2->setGeometry(QRect(310, 420, 221, 51));
         label_2 = new QLabel(Widget);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(310, 360, 241, 41));
+        label_2->setGeometry(QRect(310, 360, 331, 41));
         label_2->setFont(font2);
         pushButton_4 = new QPushButton(Widget);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
@@ -101,7 +101,7 @@ public:
         pushButton_2->setText(QApplication::translate("Widget", "\345\216\213\347\274\251", Q_NULLPTR));
         pushButton_3->setText(QApplication::translate("Widget", "\345\212\240\345\257\206", Q_NULLPTR));
         label->setText(QApplication::translate("Widget", "\350\276\223\345\207\272\346\226\207\344\273\266\345\220\215\357\274\232", Q_NULLPTR));
-        label_2->setText(QApplication::translate("Widget", "\345\216\213\347\274\251\350\264\250\351\207\217\357\274\2321min-100max", Q_NULLPTR));
+        label_2->setText(QApplication::translate("Widget", "\345\216\213\347\274\251\350\264\250\351\207\217\357\274\232\345\216\213\347\274\251\346\257\2241min-100max", Q_NULLPTR));
         pushButton_4->setText(QApplication::translate("Widget", "\350\247\243\345\257\206", Q_NULLPTR));
     } // retranslateUi
 
