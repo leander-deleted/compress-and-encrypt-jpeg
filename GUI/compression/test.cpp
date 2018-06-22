@@ -9,9 +9,7 @@ void test(){
 	ipk = fopen("C:\\Users\\fangl\\Desktop\\lecture_ppt\\cryptography\\cryptograph-ex\\keystream.dat","rb");
 
 	for(int i=0;i<100;i++){
-		fread((void *)tem,sizeof(uint8_t),1,ipk);
-		// cout<<e_data[i]<<endl;
-		// d_data.push_back((*tem)^e_data[i]);
+		fread(tem,1,1,ipk);
 	}
 	// char * tem = new char;
 	// ifstream f;

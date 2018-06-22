@@ -6,7 +6,7 @@ using namespace std;
 #include<fstream>
 #include<time.h>
 #define HEADER_LENGTH 607
-
+#include <QDebug>
 class RC4 { 
 
 	public:  

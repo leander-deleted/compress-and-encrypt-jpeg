@@ -27,13 +27,13 @@ bool Encrpytor::readJegData(const char* path){
 	data.clear();
 
 	if(f==0){
-		cout<<"fail to open";
+		qDebug()<<"fail to open";
 		return false;
 	}
 	else{
 		int result = fread(header,1,HEADER_LENGTH,f);
 		if(result!=HEADER_LENGTH){
-			cout<<"fail to read header";
+			qDebug()<<"fail to read header";
 			return false;
 		}
 		while(true){
@@ -43,7 +43,7 @@ bool Encrpytor::readJegData(const char* path){
 				//temp1 = temp0;
 			}
 			else{
-				cout<<"finish reading";
+				qDebug()<<"finish reading";
 				break;
 			}
 		}

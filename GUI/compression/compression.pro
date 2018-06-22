@@ -25,15 +25,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         widget.cpp\
-        simpleBMP.cpp\
-        rgb.cpp\
         compression.cpp\
         jpeg_encoder.cpp\
         jpegEncryption.cpp
 
 HEADERS  += widget.h\
-        simpleBMP.h\
-        rgb.h\
         compression.h\
         jpeg_encoder.h\
         encryption.h

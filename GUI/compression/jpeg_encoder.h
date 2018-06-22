@@ -1,6 +1,6 @@
 #ifndef __JPEG_ENCODER_HEADER__
 #define __JPEG_ENCODER_HEADER__
-
+#include <QDebug>
 
 class JpegEncoder
 {

@@ -186,7 +186,7 @@ bool JpegEncoder::readFromBMP(const char* fileName)
 	//打开文件
 	FILE* fp = fopen(fileName, "rb");
 	if(fp==0) return false;
-
+	qDebug()<<"open bmp file successfully";
 	bool successed=false;
 	do
 	{
@@ -196,7 +196,11 @@ bool JpegEncoder::readFromBMP(const char* fileName)
 		//bmp file info header
 		BITMAPINFOHEADER infoHeader;
 
-		if(1 != fread(&fileHeader, sizeof(fileHeader), 1, fp)) break;
+		if(1 != fread(&fileHeader, sizeof(fileHeader), 1, fp)) 
+		{
+			qDebug()<<"fail to read header";
+			break;
+		}
 		if(fileHeader.bfType!=0x4D42) break;
 
 		if(1 != fread(&infoHeader, sizeof(infoHeader), 1, fp)) break;
@@ -205,7 +209,10 @@ bool JpegEncoder::readFromBMP(const char* fileName)
 		int width = infoHeader.biWidth;
 		int height = infoHeader.biHeight < 0 ? (-infoHeader.biHeight) : infoHeader.biHeight;
 
-		if((width&7)!=0 || (height&7)!=0) break;	//必须是8的倍数
+		if((width&7)!=0 || (height&7)!=0){
+			qDebug()<<"width and height is not the multiple of 8";
+			break;
+		}	//必须是8的倍数
 
 		int bmpSize = width*height*3;
 
@@ -223,6 +230,7 @@ bool JpegEncoder::readFromBMP(const char* fileName)
 				//Q:put the first row read from stream to the last row of array
 				if(width != fread(buffer+(height-1-i)*width*3, 3, width, fp)) 
 				{
+					qDebug()<<"width != fread(buffer+(height-1-i)*width*3, 3, width, fp)";
 					delete[] buffer; buffer=0;
 					break;
 				}
@@ -232,6 +240,7 @@ bool JpegEncoder::readFromBMP(const char* fileName)
 		{
 			if(width*height != fread(buffer, 3, width*height, fp))
 			{
+				qDebug()<<"width*height != fread(buffer, 3, width*height, fp)";	
 				delete[] buffer; buffer=0;
 				break;
 			}
